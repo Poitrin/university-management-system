@@ -1,0 +1,41 @@
+<% unless current_admin %>
+    <div class="uk-margin-large">
+      <h1 class="uk-heading-primary uk-text-center"><%= t '.welcome' %></h1>
+    </div>
+<% end %>
+
+<% unless current_user %>
+    <%= render partial: 'sessions/login' %>
+<% end %>
+
+<% if current_admin %>
+    <h1><%= t('layouts.application.unvalidated_offers').html_safe %></h1>
+    <div class="row">
+      <% case current_admin.university_id
+           when 'FR' %>
+          <div class="col-lg-8">
+            <h2><%= t('activerecord.attributes.internship.languages.FR') %></h2>
+            <%= render 'offers/offers',
+                       offers: @offers.unvalidated_offers.french_offers,
+                       show_enterprise: true,
+                       list_group_id: 'unvalidated_offers' %>
+          </div>
+      <% else %>
+          <div class="col-lg-8">
+            <h2><%= t('activerecord.attributes.internship.languages.DE') %></h2>
+            <%= render 'offers/offers',
+                       offers: @offers.unvalidated_offers.german_offers,
+                       show_enterprise: true,
+                       list_group_id: 'unvalidated_offers' %>
+          </div>
+      <% end %>
+      <div class="col-lg-4">
+        <h2><%= t('activerecord.attributes.internship.languages.EN') %></h2>
+        <%= render 'offers/offers',
+                   offers: @offers.unvalidated_offers.english_offers,
+                   show_enterprise: true,
+                   list_group_id: 'unvalidated_offers' %>
+      </div>
+
+    </div>
+<% end %>

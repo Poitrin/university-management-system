@@ -1,0 +1,27 @@
+version: '2'
+services:
+  database: &database
+    image: mariadb:10
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: ums
+      MYSQL_USER: ums
+      MYSQL_PASSWORD: password
+  test_database:
+    <<: *database
+    ports:
+      - "3307:3306"
+  web:
+    build: .
+    command: bundle exec rails server -p 3000 -b '0.0.0.0' # -e production
+    environment:
+      SECRET_KEY_BASE: SECRET_KEY_BASE_FOR_PRODUCTION
+    volumes:
+      - .:/ums
+    ports:
+      - "3000:3000"
+    depends_on:
+      - database
+      - test_database

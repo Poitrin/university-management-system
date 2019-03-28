@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="<%= locale %>">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title><%= t('layouts.application.title') %></title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+
+<div class="uk-offcanvas-content">
+  <div id="mobile-nav" uk-offcanvas="push">
+    <div class="uk-offcanvas-bar uk-flex uk-flex-column">
+
+      <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+      <ul class="uk-nav uk-nav-primary uk-nav-center uk-margin-auto-vertical uk-nav-parent-icon" uk-nav>
+        <%= render partial: 'layouts/navigation_left' %>
+        <li class="uk-nav-divider"></li>
+        <%= render partial: 'layouts/navigation_right',
+                   locals: {offcanvas: true} %>
+      </ul>
+    </div>
+  </div>
+
+  <nav class="uk-navbar-container uk-margin-bottom">
+    <div class="uk-container">
+      <div class="uk-navbar" uk-navbar="mode: click">
+        <div class="uk-navbar-left">
+          <a href="#mobile-nav" class="uk-navbar-toggle uk-hidden@m" uk-navbar-toggle-icon uk-toggle></a>
+
+          <ul class="uk-navbar-nav uk-visible@m">
+            <%= render partial: 'layouts/navigation_left' %>
+          </ul>
+        </div>
+
+        <div class="uk-navbar-right uk-visible@m">
+          <ul class="uk-navbar-nav">
+            <%= render partial: 'layouts/navigation_right',
+                       locals: {offcanvas: false} %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="uk-container" id="main-container">
+    <% if flash[:alert] %>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <strong>
+            <%= flash[:alert] %>
+          </strong>
+        </div>
+    <% end %>
+
+    <% if notice %>
+        <div class="uk-alert-success" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+          <strong>
+            <%= notice %>
+          </strong>
+        </div>
+    <% end %>
+
+    <%
+      # TODO: There certainly is a better way!
+      current_object = [@internship, @enterprise, @student].find {|x| !x.nil?}
+      if current_object and current_object.errors.count > 0 %>
+        <div class="uk-alert-danger" uk-alert>
+          <a class="uk-alert-close" uk-close></a>
+
+          <p><strong>
+            <% if current_object.errors.count <= 1 %>
+                <%= t('errors.template.header.one', model: current_object.model_name.human) %>
+            <% else %>
+                <%= t('errors.template.header.other', model: current_object.model_name.human, count: current_object.errors.count) %>
+            <% end %>
+          </strong></p>
+
+          <ul>
+            <% current_object.errors.full_messages.each do |msg| %>
+                <li style="list-style-type:circle;">
+                  <%= msg.html_safe %>
+                </li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <%= yield %>
+  </div>
+
+  <div class="uk-container uk-margin uk-text-center"></div>
+</div>
+
+</body>
+
+</html>

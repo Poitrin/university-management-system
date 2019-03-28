@@ -1,0 +1,322 @@
+fr:
+  activerecord:
+    models:
+      enterprise:
+        one: "Entreprise"
+        other: "Entreprises"
+      internship:
+        one: "Stage"
+        other: "Stages"
+      student:
+        one: "Etudiant"
+        other: "Etudiants"
+      diploma:
+        one: "Diplôme"
+        other: "Diplômes"
+      director:
+        one: "PDG"
+        other: "PDG"
+      user:
+        one: "Utilisateur"
+        other: "Utilisateurs"
+      administrator:
+        one: "Administrateur"
+        other: "Administrateurs"
+      program_director:
+        one: "Responsable de filière"
+        other: "Responsables de filière"
+      address:
+        one: "Adresse"
+        other: "Adresses"
+      contact_person:
+        one: "Personne de contact"
+        other: "Personnes de contact"
+      university_supervisor:
+        one: "Tuteur universitaire"
+      enterprise_supervisor:
+        one: "Responsable de stage dans l'entreprise"
+      study_program:
+        one: "Filière"
+        other: "Filières"
+    attributes:
+      enterprise:
+        name: "Nom"
+        fixed_line: "Téléphone"
+        email: "Courriel"
+        website: "Site web"
+        fax: "Fax"
+        director: "PDG"
+        profile: "Description"
+      address: &ADDRESS
+        line1: "Adresse"
+        line2: "Adresse (suite)"
+        postal_code: "Code postal"
+        city: "Ville"
+        country: "Pays"
+        country_id: "Pays"
+        country_localized: "Pays"
+      user:
+        user_name: "Nom d'utilisateur"
+        old_password: "Mot de passe actuel"
+        password: "Nouveau mot de passe"
+        password_confirmation: "Vérification du mot de passe"
+        university_id: "Université"
+        university:
+          DE: "Hochschule für Technik und Wirtschaft des Saarlandes (htw)"
+          FR: "Université de Lorraine (UdL)"
+      program_director:
+        study_program_id: "Filière"
+      person: &PERSON
+        title_id: "Titre"
+        title_localized: "Titre"
+        first_name: "Prénom"
+        surname: "Nom de famille"
+        birth_name: "Nom de naissance"
+        birth_date: "Date de naissance"
+        birth_date_localized: "Date de naissance"
+        email: "Courriel"
+        phone: "Téléphone"
+        fixed_line: "Téléphone (fixe)"
+        private_email: "Courriel (personnel)"
+        private_fixed_line: "Téléphone (fixe, personnel)"
+        private_cell_phone: "Téléphone (mobile, personnel)"
+        business_email: "Courriel (professionnel)"
+        business_fixed_line: "Téléphone (fixe, professionnel)"
+        business_cell_phone: "Téléphone (mobile, professionnel)"
+        nationality: "Nationalité"
+        nationality_localized: "Nationalité"
+        second_nationality: "Deuxième nationalité"
+        second_nationality_localized: "Deuxième nationalité"
+      diploma: &DIPLOMA
+        degrees:
+          B: "Licence"
+          M: "Master"
+        degree: "Diplôme"
+        degree_localized: "Diplôme"
+        study_program_id: "Filière"
+        study_program_localized: "Filière"
+        studies_start: "Début des études"
+        promotion: "Promotion (année de début des études)"
+        studies_end: "Fin des études"
+        studies_finished: "Etudes terminées"
+        matriculation_number: "Numéro de matricule"
+      director:
+        <<: *PERSON
+      university_supervisor:
+        <<: *PERSON
+      enterprise_supervisor:
+        <<: *PERSON
+      contact_person:
+        first_name: "Prénom"
+        surname: "Nom de famille"
+        business_email: "Courriel"
+        business_fixed_line: "Téléphone"
+      internship:
+        study_program: "Filière"
+        study_program_id: "Filière"
+        study_program_localized: "Filière"
+        start_date: "Début"
+        start_date_localized: "Début"
+        end_date: "Fin"
+        end_date_localized: "Fin"
+        project_description: "Description des activités/du sujet"
+        project_confidential: "Projet confidentiel"
+        working_days_per_week: "Journées de travail (par semaine)"
+        working_hours_per_week: "Heures de travail (par semaine)"
+        internship_origin: "Quelle était l'origine du stage ?"
+        internship_origin_placeholder: "Offre, réseau personnel, …"
+        payment_per_month: "Rémunération par mois (€, brut)"
+        payment_per_month_localized: "Rémunération par mois (€, brut)"
+        lang_id: "Langue"
+        language_localized: "Langue"
+        languages:
+          DE: "Allemand"
+          FR: "Français"
+          EN: "Anglais"
+        department: "Service d'affectation"
+        alternative_internship_address: "Adresse du lieu de stage (si différente)"
+        promotion: "Promotion"
+        program_director_reasons: "Commentaires/Explications"
+        notes: "Notes supplémentaires"
+        student: "Etudiant"
+        enterprise: "Entreprise"
+        authorization_status:
+          "false": "Refusé le %{date} par %{person}"
+          "true": "Autorisé le %{date} par %{person}"
+        validation_status:
+          "false": "Refusé le %{date} par %{person}"
+          "true": "Validé le %{date} par %{person}"
+      study_program:
+        name: "Nom"
+        name_de: "Nom (allemand)"
+        name_fr: "Nom (français)"
+        name_en: "Nom (anglais)"
+      study_program_detail:
+        weeks: "semaines"
+        internship_duration_weeks: "Durée (en semaines)"
+        internship_start_month: "à partir de"
+  activemodel:
+    attributes:
+      session:
+        user_name: "Nom d'utilisateur"
+        password: "Mot de passe"
+      import:
+        spreadsheet: "Contenu du fichier Excel"
+    errors:
+      models:
+        session:
+          attributes:
+            user_name:
+              email_not_found: "Adresse e-mail n'existe pas."
+              too_many_failed_logins: "Vous vous êtes connecté trop souvent avec un mot de passe invalide."
+            password:
+              login_attempts_left: "Il vous reste %{attempts} essai(s)."
+  helpers:
+    show: "Afficher"
+    add: "Ajouter %{model}"
+    edit: "Modifier"
+    delete: "Supprimer"
+    select_action: "Sélectionner"
+    are_you_sure: "Etes-vous sûr ?"
+    search: "Recherche"
+    modifications_done: "Vos modifications ont été effectuées."
+    select:
+      prompt: "Veuillez sélectionner"
+    submit:
+      create: "Créer %{model}"
+      submit: "Enregistrer %{model}"
+      update: "Mettre à jour %{model}"
+      session:
+        create: "Connexion"
+      offer:
+        send: "Envoyer l'offre"
+  layouts:
+    application:
+      home: "Accueil"
+      title: "University management system"
+      unvalidated_offers: "Offres pas encore validées"
+      new_internship_offer: "Offre de stage"
+      new_job_offer: "Offre d'emploi"
+      new_offer: "Envoyer une offre"
+      all_users: "Tous"
+      administration: "Administration"
+      import: "Importation"
+      parameters: "Paramètres"
+      log_out: "Déconnexion"
+      you_can_not_access_this_content: "Vous ne pouvez malheureusement pas accéder à ce contenu ou effectuer cette action."
+      you_must_be_logged_in: "Vous devez être connecté afin d’accéder à ce contenu."
+  enterprises:
+    show:
+      add_contact_person: "Ajouter un contact"
+      contact_persons: "Contacts dans l’entreprise"
+    contacts_table:
+      name: "Name"
+      positions: "Poste(s)"
+    destroy:
+      delete_offers_first: "Effacez d'abord les offres de l’entreprise avant de l'effacer."
+  offers:
+    show:
+      language: "Langue"
+      duration_and_start_date: "Durée, début"
+    offer_table:
+      offer_created_by: "par"
+      offer_created_at: "Offre envoyée le"
+    form:
+      languages_help: "Il s'agit de la langue qui sera utilisée le plus souvent au travail."
+      attachment_help: "Une pièce jointe existante sera remplacée par la plus récente."
+      maximal_duration_months_help: "(p.ex. en cas de CDD)"
+      download_attachment: "Télécharger pièce jointe"
+      contact_person_mail_info: "… pour vous tenir au courant si votre offre a été validée."
+    create:
+      offer_thank_you_message: "Merci de votre offre. Nous vous informerons dès que votre offre aura été validée."
+    offers:
+      validate: "Valider"
+      refuse: "Refuser"
+  user:
+    user_groups:
+      administrator: "Administrateur"
+      enterprise: "Enterprise"
+      program_director: "Responsable de filière"
+      student: "Etudiant"
+  homepage:
+    index:
+      welcome: "Bienvenue !"
+  title:
+    titles:
+      1: "Monsieur"
+      2: "Madame"
+      3: "Mademoiselle"
+  students:
+    study_program: "Filière"
+    show:
+      born: "né(e)"
+      download_resume: "Télécharger CV"
+    diploma_fields:
+      matriculation_numbers: "Numéro(s) de matricule"
+    diplomas:
+      period: "Période"
+    destroy:
+      delete_internships_first: "Effacez d'abord les stages de l'étudiant avant de l'effacer."
+    form:
+      resume: "Curriculum vitæ"
+  internships:
+    form:
+      intern_studies: "Etudes"
+    index:
+      begin_and_end_date: "Début, fin"
+    show:
+      internship_period: "Période de stage"
+      authorization: "Autorisation"
+      validation: "Validation"
+      unvalidated: "Pas de réponse pour l'instant"
+      program_director: "Responsable de filière"
+      enterprise: "Entreprise"
+    enterprise_modal:
+      search_enterprise: "Chercher une entreprise"
+  sessions:
+    login:
+      forgot_password: "Restaurer mot de passe"
+    create:
+      email_sent: "Un e-mail avec un lien pour restaurer votre mot de passe a été envoyé à %{email}."
+    destroy:
+      logged_out: "Vous êtes déconnecté."
+  user_mailer:
+    password_reset_mail:
+      subject: "Restaurer votre mot de passe"
+      greeting: "Bonjour %{name}"
+      you_asked_for: "Vous avez demandé un lien pour restaurer votre mot de passe."
+      click_here: "Cliquez ici pour vous connecter automatiquement."
+      then_you_can: "Vous pouvez modifier votre mot de passe ensuite."
+      bye: "Bonne journée !"
+  offer_mailer:
+    new_offer_mail_to_administration:
+      subject: "Nouvelle offre à valider"
+      greeting: "Bonjour %{name}"
+      a_new_offer: "Quelqu'un nous a envoyé une nouvelle offre qui a besoin d'être validée."
+      you_can_find: "Vous pouvez la consulter après s'être connecté."
+      bye: "Bonne journée !"
+  people:
+    person_form:
+      contact_details: "Coordonnées"
+  users:
+    user_fields:
+      if_you_want_to: "… si vous voulez le changer."
+  import:
+    new:
+      results: "Résultats"
+      errors: "Erreurs"
+      download_template: "Télécharger le modèle"
+  errors:
+    messages:
+      extension_white_list_error: "Envoyez un fichier dans le bon format."
+      greater_than_start_date: "doit être supérieur à la date de début"
+      is_different: "est différent de la valeur existante"
+      must_not_lie_in_another_internship: "ne doit pas se trouver dans une autre période de stage"
+      must_exist: "doit déjà exister"
+  views:
+    pagination:
+      first: "&laquo; Premier"
+      last: "Dernier &raquo;"
+      previous: "&lsaquo; Précédent"
+      next: "Suivant &rsaquo;"
+      truncate: "&hellip;"

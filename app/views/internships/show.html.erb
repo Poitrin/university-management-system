@@ -1,0 +1,140 @@
+<%= internship_breadcrumb(@internship).html_safe %>
+
+<div class="uk-flex-middle" uk-grid>
+  <div class="uk-width-auto@m">
+    <h1><%= t('activerecord.models.internship.one') %></h1>
+  </div>
+  <div class="uk-width-auto@m">
+    <% if policy(@internship).edit? %>
+        <%= link_to t('helpers.edit'), edit_internship_path(@internship),
+                    class: 'uk-button uk-button-primary uk-button-small' %>
+    <% end %>
+    <% if policy(@internship).destroy? %>
+        <%= link_to t('helpers.delete'), @internship, method: :delete,
+                    class: 'uk-button uk-button-default uk-button-small',
+                    data: {confirm: t('helpers.are_you_sure')} %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <h2><%= t('activerecord.models.student.one') %>: <%= link_to @internship.student.full_name, @internship.student %>
+      <% if @internship.student.birth_name.present? %>
+          <small><%= "#{t 'students.show.born'} #{@internship.student.birth_name}" %></small>
+      <% end %>
+    </h2>
+
+    <%= render @internship.student %>
+
+    <p>
+      <strong><%= t('activerecord.attributes.internship.study_program_id') %>:</strong>
+      <%= @internship.study_program.name_localized %>
+    </p>
+
+    <%= render @internship.student.address if false and @internship.student.address %>
+  </div>
+  <div class="col-md-6">
+    <h2><%= t('activerecord.models.enterprise.one') %>:
+      <%= link_to @internship.enterprise.name, @internship.enterprise %></h2>
+    <%= render @internship.enterprise %>
+
+    <% if @internship.address %>
+        <p>
+          <strong>
+            <%= t('activerecord.attributes.internship.alternative_internship_address').html_safe %>:
+          </strong><br>
+          <%= render @internship.address %>
+        </p>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <p>
+      <strong><%= t('activerecord.models.university_supervisor.one') %>:</strong><br>
+      <% if @internship.university_supervisor %>
+          <%= @internship.university_supervisor.first_name %> <%= @internship.university_supervisor.surname %><br>
+          <%= @internship.university_supervisor.business_email %>
+      <% end %>
+    </p>
+  </div>
+  <div class="col-md-6">
+    <p>
+      <strong><%= t('activerecord.models.enterprise_supervisor.one') %>:</strong><br>
+      <% if @internship.enterprise_supervisor %>
+          <%= @internship.enterprise_supervisor.first_name %> <%= @internship.enterprise_supervisor.surname %><br>
+          <%= @internship.enterprise_supervisor.business_email %><br>
+          <%= @internship.enterprise_supervisor.business_fixed_line %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<p>
+  <strong><%= t('.internship_period') %>:</strong>
+  <%= l @internship.start_date %> – <%= l @internship.end_date %><br>
+  <strong><%= t('activerecord.attributes.internship.lang_id') %>:</strong>
+  <%= t('activerecord.attributes.internship.languages.' + @internship.lang_id) %><br>
+  <strong><%= t('activerecord.attributes.internship.department') %>:</strong>
+  <%= @internship.department %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.internship.project_description') %>:</strong><br>
+  <%= @internship.project_confidential ?
+          t('activerecord.attributes.internship.project_confidential') :
+          @internship.project_description %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.internship.working_days_per_week') %>:</strong>
+  <%= @internship.working_days_per_week %><br>
+  <strong><%= t('activerecord.attributes.internship.working_hours_per_week') %>:</strong>
+  <%= @internship.working_hours_per_week %><br>
+  <strong><%= t('activerecord.attributes.internship.payment_per_month') %>:</strong>
+  <%= @internship.payment_per_month %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.internship.internship_origin') %></strong>
+  <%= @internship.internship_origin %>
+</p>
+
+<p>
+  <strong><%= t('activerecord.attributes.internship.notes') %>:</strong><br>
+  <%= simple_format(@internship.notes, {}, wrapper_tag: 'span') %>
+</p>
+
+<div uk-grid>
+  <div class="uk-width-auto@m">
+    <h2><%= t('.authorization') %></h2>
+    <%= status('authorization',
+               @internship.authorized,
+               @internship.authorization_date,
+               @internship.authorized_by.try(:full_name)).html_safe %>
+    <% if policy(@internship).authorize_internship? %>
+        <%= simple_form_for(@internship, url: {action: 'authorize_internship'}) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.button :button, t('offers.offers.validate'), name: :authorized, value: true, class: 'uk-button uk-button-primary' %>
+            <%= f.button :button, t('offers.offers.refuse'), name: :authorized, value: false, class: 'uk-button uk-button-danger' %>
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="uk-width-auto@m">
+    <h2><%= t('.validation') %></h2>
+    <%= status('validation',
+               @internship.validated,
+               @internship.validation_date,
+               @internship.validated_by.try(:full_name)).html_safe %>
+    <% if policy(@internship).validate? %>
+        <%= simple_form_for(@internship, url: {action: 'validate'}) do |f| %>
+            <%= f.hidden_field :id %>
+            <%= f.button :button, t('offers.offers.validate'), name: :validated, value: true, class: 'uk-button uk-button-primary' %>
+            <%= f.button :button, t('offers.offers.refuse'), name: :validated, value: false, class: 'uk-button uk-button-danger' %>
+        <% end %>
+    <% end %>
+  </div>
+</div>

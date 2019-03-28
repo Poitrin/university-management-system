@@ -1,0 +1,148 @@
+<%
+  enterprise_search_form_style = @internship.enterprise ? 'display: none' : ''
+  student_search_form_style = @internship.student ? 'display: none' : ''
+%>
+
+<h2><%= t 'activerecord.models.enterprise.one' %></h2>
+
+<%= form_tag(enterprises_path,
+             method: :get,
+             enforce_utf8: false,
+             id: 'enterprise-search-form', style: 'margin-bottom: 20px;' + enterprise_search_form_style,
+             remote: true, :'uk-grid' => '') do %>
+    <div class="uk-width-1-4@s">
+      <%= text_field_tag :name,
+                         params[:name],
+                         id: 'enterprise-search-input',
+                         placeholder: t('activerecord.attributes.enterprise.name'),
+                         class: 'uk-input' %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= submit_tag t('helpers.search'), name: nil, class: 'uk-button uk-button-default' %>
+    </div>
+<% end %>
+
+<div id="enterprises">
+  <% if @internship.enterprise %>
+      <%= render partial: 'enterprises/enterprise_entry',
+                 locals: {enterprise: @internship.enterprise,
+                          is_ajax: true,
+                          is_selected: true} %>
+  <% end %>
+</div>
+
+<h2><%= t 'activerecord.models.student.one' %></h2>
+<%= form_tag(students_path, method: :get, enforce_utf8: false,
+             id: 'student-search-form', style: 'margin-bottom: 20px;' + student_search_form_style,
+             remote: true, :'uk-grid' => '') do %>
+    <div class="uk-width-1-4@s">
+      <%= text_field_tag :term,
+                         params[:term],
+                         id: 'student-search-input',
+                         placeholder: t('activerecord.attributes.person.first_name') + ' / ' + t('activerecord.attributes.person.surname'),
+                         class: 'uk-input' %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= submit_tag t('helpers.search'), name: nil, class: 'uk-button uk-button-default' %>
+    </div>
+<% end %>
+
+<div id="students">
+  <% if @internship.student %>
+      <%= render partial: 'students/student_entry',
+                 locals: {student: @internship.student,
+                          is_ajax: true,
+                          is_selected: true} %>
+  <% end %>
+</div>
+
+<%= simple_form_for setup_internship(@internship) do |f| %>
+    <%= f.hidden_field :student_id %>
+    <%= f.hidden_field :enterprise_id %>
+
+    <h2><%= t('activerecord.models.internship.one') %></h2>
+    <div uk-grid>
+      <div class="uk-width-1-3@m">
+        <%= f.input :study_program_id,
+                    collection: StudyProgram.all,
+                    label_method: :name_localized %>
+      </div>
+    </div>
+
+    <%= f.input :start_date, {include_blank: true, default: nil} %>
+    <%= f.input :end_date, {include_blank: true, default: nil} %>
+
+    <%= f.input :project_description, input_html: {rows: 7} %>
+    <%= f.input :project_confidential %>
+
+    <div uk-grid>
+      <div class="uk-width-1-4@s">
+        <%= f.input :working_days_per_week, in: Internship::MIN_WORKING_DAYS..Internship::MAX_WORKING_DAYS %>
+      </div>
+    </div>
+    <div uk-grid>
+      <div class="uk-width-1-4@s">
+        <%= f.input :working_hours_per_week, in: Internship::MIN_WORKING_HOURS..Internship::MAX_WORKING_HOURS %>
+      </div>
+    </div>
+
+    <%= f.input :internship_origin,
+                placeholder: t('activerecord.attributes.internship.internship_origin_placeholder') %>
+
+    <div uk-grid>
+      <div class="uk-width-1-4@s">
+        <%= f.input :payment_per_month_localized,
+                    placeholder: '1234,56', as: :numeric %>
+      </div>
+    </div>
+
+    <%= f.input :lang_id,
+                collection: t('activerecord.attributes.internship.languages'),
+                as: :radio_buttons,
+                value_method: :first, label_method: :last %>
+
+    <div uk-grid>
+      <div class="uk-width-1-2@m">
+        <%= f.input :department %>
+      </div>
+    </div>
+
+    <%= f.input :notes, input_html: {rows: 6} %>
+
+    <div uk-grid>
+      <div class="uk-width-1-2@m">
+        <h2><%= t('activerecord.models.university_supervisor.one') %></h2>
+        <%= f.fields_for :university_supervisor do |ff| %>
+            <%= ff.hidden_field :id %>
+            <%= ff.input :first_name %>
+            <%= ff.input :surname %>
+
+            <% if false %> <!-- TODO -->
+                <%= ff.input :email %>
+            <% end %>
+        <% end %>
+      </div>
+      <div class="uk-width-1-2@m">
+        <h2><%= t('activerecord.models.enterprise_supervisor.one') %></h2>
+        <%= f.fields_for :enterprise_supervisor do |ff| %>
+            <%= ff.hidden_field :id %>
+            <%= ff.input :first_name %>
+            <%= ff.input :surname %>
+
+            <% if false %> <!-- TODO -->
+                <%= ff.input :email %>
+                <%= ff.input :business_fixed_line %>
+            <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <h2><%= t('activerecord.attributes.internship.alternative_internship_address').html_safe %></h2>
+    <%= f.fields_for :address do |ff| %>
+        <%= render 'addresses/address_fields', f: ff %>
+    <% end %>
+
+    <div class="uk-margin">
+      <%= f.button :submit %>
+    </div>
+<% end %>

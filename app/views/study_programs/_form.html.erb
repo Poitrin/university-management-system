@@ -1,0 +1,19 @@
+<%= bootstrap_form_for(@study_program) do |f| %>
+    <%= f.text_field :name_fr %>
+    <%= f.text_field :name_de %>
+    <%= f.text_field :name_en %>
+
+    <div class="row">
+      <%= f.fields_for :study_program_details do |ff| %>
+          <div class="col-md-6">
+            <h2><%= t("activerecord.attributes.diploma.degrees.#{ff.object.degree}") %></h2>
+            <%= ff.text_field :internship_duration_weeks %>
+            <%= ff.collection_select :internship_start_month,
+                                     t('date.month_names').each_with_index.map {|name, index| [name, index]},
+                                     :last, :first %>
+          </div>
+      <% end %>
+    </div>
+
+    <%= f.submit class: 'uk-button btn-primary' %>
+<% end %>

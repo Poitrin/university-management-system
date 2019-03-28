@@ -1,0 +1,19 @@
+<% (!is_ajax && policy(Student).create? ? insert_add_button(students.to_a) : students.to_a).each_slice(3).each do |slice| %>
+  <div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
+    <% slice.each do |student| %>
+      <% if student %>
+        <%= render partial: 'student_entry', locals: {student: student, is_ajax: is_ajax, is_selected: false} %>
+      <% else %>
+        <div>
+          <div class="uk-card uk-card-primary uk-card-small uk-card-default uk-card-body">
+            <h3 class="uk-card-title">
+              <a href="<%= new_student_path %>">
+                <%= t('helpers.add', model: t('activerecord.models.student.one')) %>
+              </a>
+            </h3>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

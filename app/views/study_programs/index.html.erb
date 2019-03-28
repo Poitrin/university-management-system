@@ -1,0 +1,29 @@
+<h1><%= t('activerecord.models.study_program.other') %></h1>
+
+<table class="table table-condensed">
+  <thead>
+  <tr>
+    <th><%= t('activerecord.attributes.study_program.name') %></th>
+    <th><%= t('activerecord.attributes.diploma.degrees.B') %>:
+      <%= t('activerecord.models.internship.one') %></th>
+    <th><%= t('activerecord.attributes.diploma.degrees.M') %>:
+      <%= t('activerecord.models.internship.one') %></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @study_programs.each do |study_program| %>
+      <tr>
+        <td><%= link_to study_program.name_localized, edit_study_program_path(study_program) %></td>
+        <% study_program.study_program_details.each_with_index do |detail, index| %>
+            <td><%= detail.internship_duration_weeks %>
+              <%= t('activerecord.attributes.study_program_detail.weeks') %><% if detail.internship_start_month > 0 %>,
+            <%= t('activerecord.attributes.study_program_detail.internship_start_month') %>
+            <%= t('date.month_names')[detail.internship_start_month] %><% end %>
+            </td>
+            <!-- <td></td> -->
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

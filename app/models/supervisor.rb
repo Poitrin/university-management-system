@@ -1,0 +1,2 @@
+class Supervisor < Person
+end

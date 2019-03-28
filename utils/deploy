@@ -1,0 +1,5 @@
+git push heroku master -f
+heroku pg:reset HEROKU_POSTGRESQL_TEAL_URL
+heroku run rake db:migrate
+heroku run rake db:seed
+

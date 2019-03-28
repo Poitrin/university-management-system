@@ -1,0 +1,2 @@
+class UniversitySupervisor < Supervisor
+end

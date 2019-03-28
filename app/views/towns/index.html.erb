@@ -1,0 +1,28 @@
+<h1>Listing towns</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>German name</th>
+      <th>French name</th>
+      <th>English name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @towns.each do |town| %>
+      <tr>
+        <td><%= town.name_de %></td>
+        <td><%= town.name_fr %></td>
+        <td><%= town.name_en %></td>
+        <td><%= link_to 'Edit', edit_town_path(town) %></td>
+        <td><%= link_to 'Destroy', town, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Town', new_town_path %>

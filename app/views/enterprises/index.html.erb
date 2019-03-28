@@ -1,0 +1,26 @@
+<h1><%= t('activerecord.models.enterprise.other') %></h1>
+
+<%= form_tag(enterprises_path, method: :get, enforce_utf8: false, class: 'uk-margin uk-grid-small', :'uk-grid' => '') do %>
+    <div class="uk-width-1-4@s">
+      <%= text_field_tag :name,
+                         params[:name],
+                         {placeholder: t('activerecord.attributes.enterprise.name'), class: 'uk-input'} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= collection_select nil,
+                            :country_id,
+                            Country.all.order("name_#{locale}".to_sym),
+                            :id, "name_#{locale}".to_sym,
+                            {include_blank: t('activerecord.attributes.address.country_id'),
+                             hide_label: true, selected: params[:country_id]},
+                            {class: 'uk-select', name: :country_id} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= submit_tag t('helpers.search'), name: nil, class: 'uk-button uk-button-default' %>
+    </div>
+<% end %>
+
+<%= render partial: "enterprises",
+           locals: {enterprises: @enterprises, is_ajax: false} %>
+
+<%= paginate @enterprises %>

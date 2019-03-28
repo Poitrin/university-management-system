@@ -1,0 +1,7 @@
+<span id="line1"><%= address.line1 %></span><br>
+<span id="line2"><%= address.line2 %></span><br>
+<span id="postal_code"><%= address.postal_code %></span>&nbsp;<span id="city"><%= address.city %></span><br>
+<% if address.country %>
+    <span id="country"><%= address.country.name_localized %></span>
+<% end %>
+<br>

@@ -1,0 +1,33 @@
+<%= bootstrap_form_for [:users, @user] do |f| %>
+    <%= render 'users/user_fields', f: f %>
+
+    <% if @user.class.superclass == User %>
+        <%= f.fields_for :person do |f| %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.text_field :first_name  %>
+                <%= f.text_field :last_name  %>
+                <%= f.text_field :business_email, label: t('activerecord.attributes.person.email') %>
+              </div>
+            </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.collection_radio_buttons :university_id, t('activerecord.attributes.user.university'),
+                                           :first, :last, { include_blank: true } %>
+          </div>
+        </div>
+        <% if @user.is_a?(ProgramDirector) %>
+            <div class="row">
+              <div class="col-md-6">
+                <%= f.collection_radio_buttons :study_program_id,
+                                               StudyProgram.all,
+                                               :id, "name_#{locale}".to_sym %>
+              </div>
+            </div>
+        <% end %>
+    <% end %>
+
+    <%= f.submit class: 'uk-button btn-primary' %>
+<% end %>

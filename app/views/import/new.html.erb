@@ -1,0 +1,43 @@
+<h1><%= t('layouts.application.import') %></h1>
+
+<p><%= link_to t('.download_template'), {action: 'template', format: 'xls'}, {class: 'uk-button uk-button-primary'} %></p>
+
+<%= bootstrap_form_for(@import, url: import_path) do |f| %>
+    <%= f.text_area :spreadsheet, rows: 10 %>
+
+    <%= f.submit t('layouts.application.import'), class: 'uk-button uk-button-primary' %>
+<% end %>
+
+<% if @instances %>
+    <h2><%= t('import.new.results') %></h2>
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th><%= t('activerecord.models.student.one') %></th>
+        <th><%= t('activerecord.models.enterprise.one') %></th>
+        <th><%= t('.errors') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @instances.each_with_index do |instance, index| %>
+          <tr class="<%= instance.persisted? ? 'success' : 'danger' %>">
+            <td><%= index + 1 %></td>
+            <td><%= instance.student.try(:first_name) %> <%= instance.student.try(:last_name) %></td>
+            <td><%= (instance.enterprise.try(:name) || "").truncate(25) %></td>
+            <td>
+              <% instance.errors.to_hash(true).each do |key, message| %>
+                  <% keys = key.to_s.split('.') %>
+                  <% model_key = keys.count == 1 ? 'internship' : keys[0] %>
+                  <strong><%= t("activerecord.models.#{model_key}.one") %>:</strong>
+                  <% message.each do |msg| %>
+                      <%= msg.html_safe %><br>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>

@@ -1,0 +1,322 @@
+en:
+  activerecord:
+    models:
+      enterprise:
+        one: "Enterprise"
+        other: "Enterprises"
+      internship:
+        one: "Internship"
+        other: "Internships"
+      student:
+        one: "Student"
+        other: "Students"
+      diploma:
+        one: "Diploma"
+        other: "Diplomas"
+      director:
+        one: "Director"
+        other: "Directors"
+      user:
+        one: "User"
+        other: "Users"
+      administrator:
+        one: "Administrator"
+        other: "Administrators"
+      program_director:
+        one: "Program director"
+        other: "Program directors"
+      address:
+        one: "Address"
+        other: "Addresses"
+      contact_person:
+        one: "Contact person"
+        other: "Contact persons"
+      university_supervisor:
+        one: "University supervisor"
+      enterprise_supervisor:
+        one: "Enterprise supervisor"
+      study_program:
+        one: "Study program"
+        other: "Study programs"
+    attributes:
+      enterprise:
+        name: "Name"
+        fixed_line: "Phone"
+        email: "E-mail"
+        website: "Website"
+        fax: "Fax"
+        director: "Director"
+        profile: "Enterprise profile"
+      address: &ADDRESS
+        line1: "Address"
+        line2: "Address (continued)"
+        postal_code: "Postal code"
+        city: "Town"
+        country: "Country"
+        country_id: "Country"
+        country_localized: "Country"
+      user:
+        user_name: "User name"
+        old_password: "Current password"
+        password: "New password"
+        password_confirmation: "Confirm your password"
+        university_id: "University"
+        university:
+          DE: "Hochschule für Technik und Wirtschaft des Saarlandes (htw)"
+          FR: "Université de Lorraine (UdL)"
+      program_director:
+        study_program_id: "Study program"
+      person: &PERSON
+        title_id: "Title"
+        title_localized: "Title"
+        first_name: "First name"
+        surname: "Last name"
+        birth_name: "Birth name"
+        birth_date: "Birth date"
+        birth_date_localized: "Birth date"
+        email: "E-mail"
+        phone: "Phone"
+        fixed_line: "Phone (fixed line)"
+        private_email: "E-mail (private)"
+        private_fixed_line: "Phone (fixed line, private)"
+        private_cell_phone: "Phone (cell phone, private)"
+        business_email: "E-mail (professional)"
+        business_fixed_line: "Phone (fixed line, professional)"
+        business_cell_phone: "Phone (cell phone, professional)"
+        nationality: "Nationality"
+        nationality_localized: "Nationality"
+        second_nationality: "Second Nationality"
+        second_nationality_localized: "Second Nationality"
+      diploma: &DIPLOMA
+        degrees:
+          B: "Bachelor"
+          M: "Master"
+        degree: "Degree"
+        degree_localized: "Degree"
+        study_program_id: "Study program"
+        study_program_localized: "Study program"
+        studies_start: "Studies start"
+        promotion: "Promotion (start year of studies)"
+        studies_end: "Studies end"
+        studies_finished: "Studies finished"
+        matriculation_number: "Matriculation number"
+      director:
+        <<: *PERSON
+      university_supervisor:
+        <<: *PERSON
+      enterprise_supervisor:
+        <<: *PERSON
+      contact_person:
+        first_name: "First name"
+        surname: "Last name"
+        business_email: "E-mail"
+        business_fixed_line: "Phone"
+      internship:
+        study_program: "Study program"
+        study_program_id: "Study program"
+        study_program_localized: "Study program"
+        start_date: "Start"
+        start_date_localized: "Start"
+        end_date: "End"
+        end_date_localized: "End"
+        project_description: "Description of project/tasks"
+        project_confidential: "Project confidential"
+        working_days_per_week: "Working days (per week)"
+        working_hours_per_week: "Working hours (per week)"
+        internship_origin: "How have you heard of the internship?"
+        internship_origin_placeholder: "Offer, connections, …"
+        payment_per_month: "Payment per month (€, gross)"
+        payment_per_month_localized: "Payment per month (€, gross)"
+        lang_id: "Language"
+        language_localized: "Language"
+        languages:
+          DE: "German"
+          FR: "French"
+          EN: "English"
+        department: "Department"
+        alternative_internship_address: "Internship address (if different)"
+        promotion: "Promotion"
+        program_director_reasons: "Comments/Explanations"
+        notes: "Additional notes"
+        student: "Student"
+        enterprise: "Enterprise"
+        authorization_status:
+          "false": "Refused %{date} by %{person}"
+          "true": "Authorized %{date} by %{person}"
+        validation_status:
+          "false": "Refused %{date} by %{person}"
+          "true": "Validated %{date} by %{person}"
+      study_program:
+        name: "Name"
+        name_de: "Name (german)"
+        name_fr: "Name (french)"
+        name_en: "Name (english)"
+      study_program_detail:
+        weeks: "Weeks"
+        internship_duration_weeks: "Duration (in weeks)"
+        internship_start_month: "Start month"
+  activemodel:
+    attributes:
+      session:
+        user_name: "User name"
+        password: "Password"
+      import:
+        spreadsheet: "Content of the spreadsheet"
+    errors:
+      models:
+        session:
+          attributes:
+            user_name:
+              email_not_found: "E-mail address could not be found."
+              too_many_failed_logins: "You logged in too often with invalid credentials."
+            password:
+              login_attempts_left: "%{attempts} attempts left."
+  helpers:
+    show: "Show"
+    add: "Add %{model}"
+    edit: "Edit"
+    delete: "Delete"
+    select_action: "Select"
+    are_you_sure: "Are you sure?"
+    search: "Search"
+    modifications_done: "Your modifications have been saved."
+    select:
+      prompt: "Please choose."
+    submit:
+      create: "Create %{model}"
+      submit: "Save %{model}"
+      update: "Update %{model}"
+      session:
+        create: "Login"
+      offer:
+        send: "Send offer"
+  layouts:
+    application:
+      home: "Home"
+      title: "University management system"
+      unvalidated_offers: "New offers <small>to validate</small>"
+      new_internship_offer: "Internship offer"
+      new_job_offer: "Job offer"
+      new_offer: "Send offer"
+      all_users: "All users"
+      administration: "Administration"
+      import: "Import"
+      parameters: "Parameters"
+      log_out: "Logout"
+      you_can_not_access_this_content: "You can’t access this content or execute this action."
+      you_must_be_logged_in: "You need to be logged in to access this content."
+  enterprises:
+    show:
+      add_contact_person: "Add a contact person"
+      contact_persons: "Contact persons"
+    contacts_table:
+      name: "Name"
+      positions: "Position(s)"
+    destroy:
+      delete_offers_first: "Delete the offers first before you delete the enterprise."
+  offers:
+    show:
+      language: "Language"
+      duration_and_start_date: "Duration, Start date"
+    offer_table:
+      offer_created_by: "by"
+      offer_created_at: "Offer created at"
+    form:
+      languages_help: "Language at the working place which is used the most."
+      maximal_duration_months_help: "(e.g. for a fixed-term work contract)"
+      attachment_help: "An existing attachment will be replaced."
+      download_attachment: "Download attachment"
+      contact_person_mail_info: "… so that you know if your offer has been validated."
+    create:
+      offer_thank_you_message: "Thank you for your offer. We’ll contact you as soon as your offer has been validated."
+    offers:
+      validate: "Accept"
+      refuse: "Refuse"
+  user:
+    user_groups:
+      administrator: "Administrator"
+      enterprise: "Enterprise"
+      program_director: "Program director"
+      student: "Student"
+  homepage:
+    index:
+      welcome: "Welcome!"
+  title:
+    titles:
+      1: "Mr"
+      2: "Mrs"
+      3: "Ms"
+  students:
+    study_program: "Study program"
+    show:
+      born: "Born"
+      download_resume: "Download resume"
+    diploma_fields:
+      matriculation_numbers: "Matriculation number(s)"
+    diplomas:
+      period: "Period"
+    destroy:
+      delete_internships_first: "Delete the internships first before you delete the student."
+    form:
+      resume: "Resume"
+  internships:
+    form:
+      intern_studies: "Studies"
+    index:
+      begin_and_end_date: "Start and end date"
+    show:
+      internship_period: "Internship period"
+      authorization: "Authorization"
+      validation: "Validation"
+      unvalidated: "No feedback received yet"
+      program_director: "Program director"
+      enterprise: "Enterprise"
+    enterprise_modal:
+      search_enterprise: "Find an enterprise"
+  sessions:
+    login:
+      forgot_password: "Restore password"
+    create:
+      email_sent: "A mail with a link to restore your password has been sent to %{email}."
+    destroy:
+      logged_out: "You have been logged out."
+  user_mailer:
+    password_reset_mail:
+      subject: "Restore password"
+      greeting: "Hello %{name}"
+      you_asked_for: "You requested a link to restore your password."
+      click_here: "Click here to log in."
+      then_you_can: "Then you can change your password."
+      bye: "Have a nice day!"
+  offer_mailer:
+    new_offer_mail_to_administration:
+      subject: "New offer to validate"
+      greeting: "Hello %{name}"
+      a_new_offer: "Someone has created an offer that needs to be validated."
+      you_can_find: "You can see it on the homepage, after you log in."
+      bye: "Have a nice day!"
+  people:
+    person_form:
+      contact_details: "Contact details"
+  users:
+    user_fields:
+      if_you_want_to: "… if you want to change your password."
+  import:
+    new:
+      results: "Results"
+      errors: "Errors"
+      download_template: "Download template"
+  errors:
+    messages:
+      extension_white_list_error: "Please send us a file in the right format."
+      greater_than_start_date: "must be greater than the start date"
+      is_different: "is different than the existing value"
+      must_not_lie_in_another_internship: "must not lie in another internship"
+      must_exist: "must exist"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Previous"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"

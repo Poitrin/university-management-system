@@ -1,0 +1,14 @@
+<%= simple_form_for setup_student(@student) do |f| %>
+    <%= render 'people/person_form', f: f %>
+
+    <h2><%= t('internships.form.intern_studies') %></h2>
+    <%= f.simple_fields_for :diplomas do |ff| %>
+        <%= render 'diploma_fields', f: ff %>
+    <% end %>
+
+    <div uk-grid>
+        <div class="uk-width-2@m">
+            <%= f.submit class: 'uk-button uk-button-default' %>
+        </div>
+    </div>
+<% end %>

@@ -1,0 +1,42 @@
+<li class="uk-parent">
+  <% locales = {de: 'Deutsch', fr: 'Français', en: 'English'} %>
+  <a href="#"><%= locales[locale] %></a>
+  <% if offcanvas %>
+      <ul class="uk-nav-sub">
+        <%= render partial: 'layouts/locales', locals: {locales: locales.except(locale)} %>
+      </ul>
+  <% else %>
+      <div class="uk-navbar-dropdown">
+        <ul class="uk-nav uk-navbar-dropdown-nav">
+          <%= render partial: 'layouts/locales', locals: {locales: locales.except(locale)} %>
+        </ul>
+      </div>
+  <% end %>
+</li>
+
+<% if current_user %>
+    <% link = current_user.administrator? ? nil : student_path(current_user) %>
+
+    <% if offcanvas %>
+        <% if link %>
+            <li id="full_name_offcanvas"><%= link_to(current_user.full_name, link) %></li>
+        <% else %>
+            <li id="full_name_offcanvas" class="uk-text-large uk-text-muted"><%= current_user.full_name %></li>
+        <% end %>
+    <% else %>
+        <% if link %>
+            <li id="full_name"><%= link_to(current_user.full_name, link) %></li>
+        <% else %>
+            <div id="full_name" class="uk-navbar-item uk-text-uppercase uk-text-muted">
+              <%= current_user.full_name %>
+            </div>
+        <% end %>
+    <% end %>
+    <li>
+      <%= link_to t('layouts.application.log_out'),
+                  logout_path,
+                  id: offcanvas ? 'log_out_offcanvas' : 'Logout',
+                  class: 'navbar-link',
+                  method: :delete %>
+    </li>
+<% end %>

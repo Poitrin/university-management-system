@@ -1,0 +1,29 @@
+<%= form_for(@town) do |f| %>
+    <% if @town.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@town.errors.count, "error") %> prohibited this town from being saved:</h2>
+
+          <ul>
+            <% @town.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label "German name" %><br>
+      <%= f.text_field :name_de %>
+    </div>
+    <div class="field">
+      <%= f.label "French name" %><br>
+      <%= f.text_field :name_fr %>
+    </div>
+    <div class="field">
+      <%= f.label "English name" %><br>
+      <%= f.text_field :name_en %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

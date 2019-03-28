@@ -1,0 +1,7 @@
+<%= simple_form_for setup_enterprise(@enterprise) do |f| %>
+    <%= render 'enterprise_form', f: f %>
+
+    <div class="uk-margin">
+      <%= f.button :submit %>
+    </div>
+<% end %>

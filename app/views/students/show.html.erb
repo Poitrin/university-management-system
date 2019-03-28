@@ -1,0 +1,43 @@
+<%= student_breadcrumb(@student).html_safe %>
+
+<div class="uk-flex-middle" uk-grid>
+  <div class="uk-width-auto@m">
+    <h1>
+      <%= @student.full_name %>
+      <% if @student.birth_name.present? %>
+        <small><%= "#{t '.born'} #{@student.birth_name}" %></small>
+      <% end %>
+    </h1>
+  </div>
+  <div class="uk-width-auto@m">
+    <% if policy(@student).edit? %>
+        <%= link_to t('helpers.edit'), edit_student_path(@student),
+                    class: 'uk-button uk-button-primary uk-button-small' %>
+    <% end %>
+    <% if policy(@student).destroy? %>
+        <%= link_to t('helpers.delete'), @student, method: :delete,
+                    class: 'uk-button uk-button-default uk-button-small',
+                    data: {confirm: t('helpers.are_you_sure')} %>
+    <% end %>
+  </div>
+</div>
+
+<%= render @student %>
+
+<h2><%= t('internships.form.intern_studies') %></h2>
+<%= render 'diplomas', diplomas: @student.diplomas %>
+
+<% if @student.address %>
+<h2><%= t('activerecord.models.address.one') %></h2>
+<div class="uk-child-width-1-3@m uk-grid-small uk-grid-match" uk-grid>
+  <div>
+    <div class="uk-card uk-card-default uk-card-small uk-card-body">
+      <%= render @student.address %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+<h2><%= t('activerecord.models.internship.other') %></h2>
+
+<%= render 'internships/internships', internships: policy_scope(@student.internships).to_a %>

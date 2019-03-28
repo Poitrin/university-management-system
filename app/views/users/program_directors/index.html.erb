@@ -1,0 +1,7 @@
+<h1><%= t('activerecord.models.program_director.other') %></h1>
+<% if policy(ProgramDirector).new? %>
+    <p><%= link_to t('helpers.add', model: t('activerecord.models.program_director.one')),
+                   new_users_program_director_path,
+                   class: 'uk-button btn-primary' %></p>
+<% end %>
+<%= render 'users/users', users: ProgramDirector.all %>

@@ -1,0 +1,16 @@
+<p>
+  <strong>Id:</strong>
+  <%= @country.id %>
+
+  <strong>German name</strong>
+  <%= @country.name_de %>
+
+  <strong>French name</strong>
+  <%= @country.name_fr %>
+
+  <strong>English name</strong>
+  <%= @country.name_en %>
+</p>
+
+<%= link_to 'Edit', edit_country_path(@country) %> |
+<%= link_to 'Back', countries_path %>

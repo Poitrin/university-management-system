@@ -1,0 +1,32 @@
+<% if enterprise.profile.present? %>
+    <p>
+      <b><%= t('activerecord.attributes.enterprise.profile') %>:</b><br>
+      <span id="profile"><%= enterprise.profile %></span>
+    </p>
+<% end %>
+<p>
+  <b><%= t('activerecord.models.address.one') %>:</b><br>
+  <%= render enterprise.address %>
+</p>
+<!-- TODO -->
+<% if false and (enterprise.fixed_line.present? or enterprise.fax.present? or enterprise.email.present?) %>
+    <p>
+      <% unless enterprise.fixed_line.blank? %>
+          <b><%= t('activerecord.attributes.enterprise.fixed_line') %>:</b> <%= enterprise.fixed_line %><br>
+      <% end %>
+
+      <% unless enterprise.fax.blank? %>
+          <b><%= t('activerecord.attributes.enterprise.fax') %>:</b> <%= enterprise.fax %><br>
+      <% end %>
+
+      <% unless enterprise.email.blank? %>
+          <b><%= t('activerecord.attributes.enterprise.email') %>:</b> <%= enterprise.email %><br>
+      <% end %>
+    </p>
+<% end %>
+<% if enterprise.director %>
+    <p>
+      <b><%= t('activerecord.attributes.enterprise.director') %>:</b>
+      <span id="director_full_name"><%= enterprise.director.full_name %></span>
+    </p>
+<% end %>

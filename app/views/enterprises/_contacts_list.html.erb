@@ -1,0 +1,5 @@
+<ul>
+    <% people.each do |person| %>
+        <li><%= link_to person.full_name_with_title(locale), person %></li>
+    <% end %>
+</ul>

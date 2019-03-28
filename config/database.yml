@@ -1,0 +1,25 @@
+default: &default
+  adapter: mysql2
+  # encoding: unicode
+  database: ums
+  username: ums
+  password: password
+  host: database
+
+development:
+  <<: *default
+
+production:
+  <<: *default
+  # username: username_of_production_database
+  # password: password_of_production_database
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test: &test
+  <<: *default
+  host: test_database
+
+cucumber:
+  <<: *test

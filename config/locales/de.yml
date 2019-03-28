@@ -1,0 +1,322 @@
+de:
+  activerecord:
+    models:
+      enterprise:
+        one: "Unternehmen"
+        other: "Unternehmen"
+      internship:
+        one: "Praktikum"
+        other: "Praktika"
+      student:
+        one: "Student"
+        other: "Studenten"
+      diploma:
+        one: "Abschluss"
+        other: "Abschlüsse"
+      director:
+        one: "Geschäftsführer"
+        other: "Geschäftsführer"
+      user:
+        one: "Benutzer"
+        other: "Benutzer"
+      administrator:
+        one: "Administrator"
+        other: "Administratoren"
+      program_director:
+        one: "Studiengangsleiter"
+        other: "Studiengangsleiter"
+      address:
+        one: "Adresse"
+        other: "Adressen"
+      contact_person:
+        one: "Kontaktperson"
+        other: "Kontaktpersonen"
+      university_supervisor:
+        one: "Praktikumsbetreuer der Universität"
+      enterprise_supervisor:
+        one: "Praktikumsbetreuer im Unternehmen"
+      study_program:
+        one: "Studiengang"
+        other: "Studiengänge"
+    attributes:
+      enterprise:
+        name: "Name"
+        fixed_line: "Telefonnummer"
+        email: "E-Mail"
+        website: "Webseite"
+        fax: "Fax"
+        director: "Geschäftsführer"
+        profile: "Unternehmensprofil"
+      address: &ADDRESS
+        line1: "Adresse"
+        line2: "Adresse (Fortsetzung)"
+        postal_code: "PLZ"
+        city: "Ort"
+        country: "Land"
+        country_id: "Land"
+        country_localized: "Land"
+      user:
+        user_name: "Benutzername"
+        old_password: "Aktuelles Passwort"
+        password: "Neues Passwort"
+        password_confirmation: "Passwort erneut eingeben"
+        university_id: "Universität"
+        university:
+          DE: "Hochschule für Technik und Wirtschaft des Saarlandes (htw)"
+          FR: "Université de Lorraine (UdL)"
+      program_director:
+        study_program_id: "Studiengang"
+      person: &PERSON
+        title_id: "Anrede"
+        title_localized: "Anrede"
+        first_name: "Vorname"
+        surname: "Nachname"
+        birth_name: "Geburtsname"
+        birth_date: "Geburtsdatum"
+        birth_date_localized: "Geburtsdatum"
+        email: "E-Mail"
+        phone: "Telefonnummer"
+        fixed_line: "Telefonnummer (Festnetz)"
+        private_email: "E-Mail (privat)"
+        private_fixed_line: "Telefonnummer (Festnetz, privat)"
+        private_cell_phone: "Telefonnummer (mobil, privat)"
+        business_email: "E-Mail (geschäftlich)"
+        business_fixed_line: "Telefonnummer (Festnetz, geschäftlich)"
+        business_cell_phone: "Telefonnummer (mobil, geschäftlich)"
+        nationality: "Nationalität"
+        nationality_localized: "Nationalität"
+        second_nationality: "Zweite Nationalität"
+        second_nationality_localized: "Zweite Nationalität"
+      diploma: &DIPLOMA
+        degrees:
+          B: "Bachelor"
+          M: "Master"
+        degree: "Abschluss"
+        degree_localized: "Abschluss"
+        study_program_id: "Studiengang"
+        study_program_localized: "Studiengang"
+        studies_start: "Studienbeginn"
+        promotion: "Jahrgang (Jahr des Studienbeginns)"
+        studies_end: "Studienende"
+        studies_finished: "Studium beendet"
+        matriculation_number: "Matrikelnummer"
+      director:
+        <<: *PERSON
+      university_supervisor:
+        <<: *PERSON
+      enterprise_supervisor:
+        <<: *PERSON
+      contact_person:
+        first_name: "Vorname"
+        surname: "Nachname"
+        business_email: "E-Mail"
+        business_fixed_line: "Telefonnummer"
+      internship:
+        study_program: "Studiengang"
+        study_program_id: "Studiengang"
+        study_program_localized: "Studiengang"
+        start_date: "Beginn"
+        start_date_localized: "Beginn"
+        end_date: "Ende"
+        end_date_localized: "Ende"
+        project_description: "Beschreibung der Praktikumsaufgaben"
+        project_confidential: "Projektbeschreibung vertraulich"
+        working_days_per_week: "Arbeitstage (pro Woche)"
+        working_hours_per_week: "Arbeitsstunden (pro Woche)"
+        internship_origin: "Wie haben Sie von dem Praktikum erfahren?"
+        internship_origin_placeholder: "Stellenangebot, Vitamin B, …"
+        payment_per_month: "Monatliche Praktikumsvergütung (€, brutto)"
+        payment_per_month_localized: "Monatliche Praktikumsvergütung (€, brutto)"
+        lang_id: "Sprache"
+        language_localized: "Sprache"
+        languages:
+          DE: "Deutsch"
+          FR: "Französisch"
+          EN: "Englisch"
+        department: "Praktikumsabteilung"
+        alternative_internship_address: "Adresse des Praktikums (falls abweichend)"
+        promotion: "Jahrgang"
+        program_director_reasons: "Kommentare/Erklärungen"
+        notes: "Zusätzliche Informationen"
+        student: "Student"
+        enterprise: "Unternehmen"
+        authorization_status:
+          "false": "Abgelehnt am %{date} von %{person}"
+          "true": "Genehmigt am %{date} von %{person}"
+        validation_status:
+          "false": "Abgelehnt am %{date} von %{person}"
+          "true": "Anerkannt am %{date} von %{person}"
+      study_program:
+        name: "Name"
+        name_de: "Name (deutsch)"
+        name_fr: "Name (französisch)"
+        name_en: "Name (englisch)"
+      study_program_detail:
+        weeks: "Wochen"
+        internship_duration_weeks: "Dauer (in Wochen)"
+        internship_start_month: "ab"
+  activemodel:
+    attributes:
+      session:
+        user_name: "Benutzername"
+        password: "Passwort"
+      import:
+        spreadsheet: "Inhalt der Excel-Datei"
+    errors:
+      models:
+        session:
+          attributes:
+            user_name:
+              email_not_found: "E-Mail-Adresse konnte nicht gefunden werden."
+              too_many_failed_logins: "Sie haben sich zu oft mit einem falschen Passwort eingeloggt."
+            password:
+              login_attempts_left: "%{attempts} Login-Versuch(e) übrig."
+  helpers:
+    show: "Anzeigen"
+    add: "%{model} hinzufügen"
+    edit: "Bearbeiten"
+    delete: "Löschen"
+    select_action: "Auswählen"
+    are_you_sure: "Sind Sie sicher?"
+    search: "Suchen"
+    modifications_done: "Ihre Änderungen wurden gespeichert."
+    select:
+      prompt: "Bitte wählen"
+    submit:
+      create: "%{model} erstellen"
+      submit: "%{model} speichern"
+      update: "%{model} aktualisieren"
+      session:
+        create: "Anmelden"
+      offer:
+        send: "Angebot senden"
+  layouts:
+    application:
+      home: "Startseite"
+      title: "University management system"
+      unvalidated_offers: "Neue Angebote <small>zum Validieren</small>"
+      new_internship_offer: "Praktikumsangebot"
+      new_job_offer: "Jobangebot"
+      new_offer: "Angebot senden"
+      all_users: "Alle"
+      administration: "Verwaltung"
+      import: "Import"
+      parameters: "Parameter"
+      log_out: "Abmelden"
+      you_can_not_access_this_content: "Sie können diesen Inhalt leider nicht einsehen oder diese Aktion nicht ausführen."
+      you_must_be_logged_in: "Sie müssen eingeloggt sein, um auf diesen Inhalt zugreifen zu können."
+  enterprises:
+    show:
+      add_contact_person: "Kontaktperson hinzufügen"
+      contact_persons: "Kontaktpersonen"
+    contacts_table:
+      name: "Name"
+      positions: "Position(en)"
+    destroy:
+      delete_offers_first: "Zuerst Angebote löschen, bevor Unternehmen gelöscht werden kann."
+  offers:
+    show:
+      language: "Sprache"
+      duration_and_start_date: "Zeitraum, Beginn"
+    offer_table:
+      offer_created_by: "von"
+      offer_created_at: "Angebot erstellt am"
+    form:
+      languages_help: "Hierbei handelt es sich um die Sprache, die am Häufigsten am Arbeitsplatz verwendet wird."
+      maximal_duration_months_help: "(z.B. bei befristetem Arbeitsvertrag)"
+      attachment_help: "Eine bereits hochgeladene Anlage wird ersetzt."
+      download_attachment: "Anlage herunterladen"
+      contact_person_mail_info: "… damit Sie Bescheid wissen, ob Ihr Angebot validiert wurde."
+    create:
+      offer_thank_you_message: "Vielen Dank für Ihr Angebot. Wir werden Sie informieren, sobald Ihr Angebot validiert wurde."
+    offers:
+      validate: "Akzeptieren"
+      refuse: "Ablehnen"
+  user:
+    user_groups:
+      administrator: "Administrator"
+      enterprise: "Unternehmen"
+      program_director: "Studiengangsleiter"
+      student: "Student"
+  homepage:
+    index:
+      welcome: "Willkommen!"
+  title:
+    titles:
+      1: "Herr"
+      2: "Frau"
+      3: "Fräulein"
+  students:
+    study_program: "Studiengang"
+    show:
+      born: "Geboren(e)"
+      download_resume: "Lebenslauf herunterladen"
+    diploma_fields:
+      matriculation_numbers: "Matrikelnummer(n)"
+    diplomas:
+      period: "Zeitraum"
+    destroy:
+      delete_internships_first: "Zuerst Praktika löschen, bevor Student gelöscht werden kann."
+    form:
+      resume: "Lebenslauf"
+  internships:
+    form:
+      intern_studies: "Studium"
+    index:
+      begin_and_end_date: "Beginn, Ende"
+    show:
+      internship_period: "Praktikumszeitraum"
+      authorization: "Genehmigung"
+      validation: "Anerkennung"
+      unvalidated: "Noch keine Rückmeldung erhalten"
+      program_director: "Studiengangsleiter"
+      enterprise: "Unternehmen"
+    enterprise_modal:
+      search_enterprise: "Unternehmen suchen"
+  sessions:
+    login:
+      forgot_password: "Passwort wiederherstellen"
+    create:
+      email_sent: "Eine E-Mail mit einem Link zur Passwortwiederherstellung wurde an %{email} versendet."
+    destroy:
+      logged_out: "Sie wurden ausgeloggt."
+  user_mailer:
+    password_reset_mail:
+      subject: "Passwort wiederherstellen"
+      greeting: "Guten Tag %{name}"
+      you_asked_for: "Sie haben einen Link für die Wiederherstellung Ihres Passwortes gefordert."
+      click_here: "Klicken Sie hier, um sich automatisch anzumelden."
+      then_you_can: "Anschließend können Sie Ihr Passwort wie gewohnt ändern."
+      bye: "Auf Wiedersehen!"
+  offer_mailer:
+    new_offer_mail_to_administration:
+      subject: "Neues Angebot zum Validieren"
+      greeting: "Guten Tag %{name}"
+      a_new_offer: "Jemand hat ein neues Angebot erstellt, das validiert werden müsste."
+      you_can_find: "Sie können es auf Ihrer Startseite sehen, nachdem Sie sich angemeldet haben."
+      bye: "Auf Wiedersehen!"
+  people:
+    person_form:
+      contact_details: "Kontaktdaten"
+  users:
+    user_fields:
+      if_you_want_to: "… falls Sie Ihr Passwort ändern möchten."
+  import:
+    new:
+      results: "Ergebnisse"
+      errors: "Fehler"
+      download_template: "Template herunterladen"
+  errors:
+    messages:
+      extension_white_list_error: "Bitte senden Sie uns eine Datei im richtigen Format."
+      greater_than_start_date: "muss nach dem Startdatum liegen"
+      is_different: "entspricht nicht dem existierenden Wert"
+      must_not_lie_in_another_internship: "darf nicht in einem anderen Praktikumszeitraum liegen"
+      must_exist: "muss bereits existieren"
+  views:
+    pagination:
+      first: "&laquo; Anfang"
+      last: "Ende &raquo;"
+      previous: "&lsaquo; Zurück"
+      next: "Weiter &rsaquo;"
+      truncate: "&hellip;"

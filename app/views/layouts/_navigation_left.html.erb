@@ -1,0 +1,46 @@
+<% if current_user %>
+    <li class="<%= 'uk-active' if params[:controller] == 'students' %>">
+      <%= link_to t('activerecord.models.student.other'), students_path %>
+    </li>
+    <li class="<%= 'uk-active' if %w(enterprises).include? params[:controller] %>">
+      <%= link_to t('activerecord.models.enterprise.other'), enterprises_path %>
+    </li>
+    <li class="<%= 'uk-active' if params[:controller] == 'internships' %>">
+      <%= link_to t('activerecord.models.internship.other'), internships_path %>
+    </li>
+    <% if policy(Administrator).index? || policy(ProgramDirector).index? || policy(StudyProgram).index? %>
+        <li class="dropdown <%= 'uk-active' if %w(import users/administrators users/program_directors study_programs).include? params[:controller] %>">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <%= t('layouts.application.administration') %> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu" role="menu">
+            <% if policy(Administrator).index? %>
+                <li>
+                  <%= link_to t('activerecord.models.administrator.other'), users_administrators_path %>
+                </li>
+            <% end %>
+            <% if policy(ProgramDirector).index? %>
+                <li>
+                  <%= link_to t('activerecord.models.program_director.other'), users_program_directors_path %>
+                </li>
+            <% end %>
+
+            <% if policy(StudyProgram).index? %>
+                <li>
+                  <%= link_to t('activerecord.models.study_program.other'), study_programs_path %>
+                </li>
+            <% end %>
+
+            <% if policy(Import).index? %>
+                <li>
+                  <%= link_to t('layouts.application.import'), {controller: "/import", action: "new"} %>
+                </li>
+            <% end %>
+          </ul>
+        </li>
+    <% end %>
+<% else %>
+    <li class="<%= 'uk-active' if %w(homepage sessions).include? params[:controller] %>">
+      <%= link_to t('layouts.application.home'), root_path %>
+    </li>
+<% end %>

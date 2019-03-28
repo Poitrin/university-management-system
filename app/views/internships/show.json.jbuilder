@@ -1,0 +1,3 @@
+json.extract! @internship,
+              :id
+

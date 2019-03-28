@@ -1,0 +1,32 @@
+<div class="uk-card uk-card-default uk-card-body uk-margin">
+  <div uk-grid>
+    <div class="uk-width-1-3@m">
+      <%= f.input :study_program_id, collection: StudyProgram.all, label_method: :name_localized %>
+    </div>
+  </div>
+
+  <div uk-grid>
+    <div class="uk-width-1@m col-md-offset-2">
+      <div uk-grid>
+        <div class="uk-width-1-3@m">
+          <%= f.input :studies_start, start_year: FOUNDING_YEAR %>
+        </div>
+        <div class="uk-width-1-3@m">
+          <%= f.input :studies_end, start_year: FOUNDING_YEAR %>
+          <%= f.input :studies_finished %>
+        </div>
+      </div>
+      <div uk-grid>
+        <div class="uk-width-1-3@m">
+          <%= f.input :matriculation_number %>
+        </div>
+        <% if f.object.id %>
+            <div class="uk-width-1@m">
+              <%= link_to t('helpers.delete'), f.object, method: :delete, data: { confirm: t('helpers.are_you_sure') }, class: 'btn btn-default' %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+

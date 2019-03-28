@@ -1,0 +1,33 @@
+<%= form_for(@title_translation) do |f| %>
+  <% if @title_translation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@title_translation.errors.count, "error") %> prohibited this title_translation from being saved:</h2>
+
+      <ul>
+      <% @title_translation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :title_id %><br>
+    <%= f.text_field :title_id %>
+  </div>
+  <div class="field">
+    <%= f.label :lang_id %><br>
+    <%= f.text_field :lang_id %>
+  </div>
+  <div class="field">
+    <%= f.label :title_short %><br>
+    <%= f.text_field :title_short %>
+  </div>
+  <div class="field">
+    <%= f.label :title_long %><br>
+    <%= f.text_field :title_long %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

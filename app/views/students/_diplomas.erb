@@ -1,0 +1,20 @@
+<% if diplomas.length > 0 %>
+    <table class="uk-table uk-table-striped">
+      <thead>
+      <tr>
+        <th><%= t('.period') %></th>
+        <th><%= t('activerecord.attributes.internship.study_program') %></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% diplomas.each do |diploma| %>
+          <tr>
+            <td><%= diploma.study_period.html_safe %></td>
+            <td><%= diploma.study_program.name_localized %></td>
+            <!-- TODO: matriculation_numbers ? -->
+            <!-- TODO: diploma.country.name -->
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>

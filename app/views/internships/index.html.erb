@@ -1,0 +1,36 @@
+<h1><%= t 'activerecord.models.internship.other' %></h1>
+
+<%= form_tag(internships_path, method: :get, enforce_utf8: false, class: 'uk-margin uk-grid-small', :'uk-grid' => '') do %>
+    <div class="uk-width-1-4@s">
+      <%= collection_select nil,
+                            :study_program_id,
+                            StudyProgram.all,
+                            :id, :name_localized,
+                            {include_blank: t('activerecord.attributes.diploma.study_program_id'),
+                             hide_label: true, selected: params[:study_program_id]},
+                            {class: 'uk-select', name: :study_program_id} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= select nil,
+                 :year,
+                 (Date.today.year.to_i).downto(FOUNDING_YEAR).to_a,
+                 {include_blank: t('datetime.prompts.year'), hide_label: true, selected: params[:year]},
+                 {class: 'uk-select', name: :year} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= collection_select nil,
+                            :lang_id,
+                            t('activerecord.attributes.internship.languages'),
+                            :first, :last,
+                            {include_blank: t('activerecord.attributes.internship.lang_id'),
+                             hide_label: true, selected: params[:lang_id]},
+                            {class: 'uk-select', name: :lang_id} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= submit_tag t('helpers.search'), name: nil, class: 'uk-button uk-button-default' %>
+    </div>
+<% end %>
+
+<%= render 'internships', internships: @internships.to_a %>
+
+<%= paginate @internships %>

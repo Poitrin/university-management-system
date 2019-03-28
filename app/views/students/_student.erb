@@ -1,0 +1,59 @@
+<% if student.birth_date %>
+  <p>
+    <strong><%= t('activerecord.attributes.person.birth_date') %>:</strong>
+    <%= l student.birth_date %>
+  </p>
+<% end %>
+
+<div uk-grid>
+    <div class="uk-width-1-3@m">
+    <% if student.private_email.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.private_email') %>:</strong>
+        <%= student.private_email %>
+      </p>
+    <% end %>
+  </div>
+  <div class="uk-width-1-3@m">
+    <% if student.private_fixed_line.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.private_fixed_line') %>:</strong>
+        <%= student.private_fixed_line %>
+      </p>
+    <% end %>
+  </div>
+  <div class="uk-width-1-3@m">
+    <% if student.private_cell_phone.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.private_cell_phone') %>:</strong>
+        <%= student.private_cell_phone %>
+      </p>
+    <% end %>
+  </div>
+</div>
+<div uk-grid>
+    <div class="uk-width-1-3@m">
+    <% if student.business_email.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.business_email') %>:</strong>
+        <%= student.business_email %>
+      </p>
+    <% end %>
+  </div>
+  <div class="uk-width-1-3@m">
+    <% if student.business_fixed_line.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.business_fixed_line') %>:</strong>
+        <%= student.business_fixed_line %>
+      </p>
+    <% end %>
+  </div>
+  <div class="uk-width-1-3@m">
+    <% if student.business_cell_phone.present? %>
+      <p>
+        <strong><%= t('activerecord.attributes.person.business_cell_phone') %>:</strong>
+        <%= student.business_cell_phone %>
+      </p>
+    <% end %>
+  </div>
+</div>

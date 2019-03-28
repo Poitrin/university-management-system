@@ -1,0 +1,33 @@
+<h1><%= t 'activerecord.models.student.other' %></h1>
+
+<%= form_tag(students_path, method: :get, enforce_utf8: false, class: 'uk-margin uk-grid-small', :'uk-grid' => '') do %>
+    <div class="uk-width-1-4@s">
+      <%= text_field_tag :term,
+                         params[:term],
+                         {placeholder: t('activerecord.attributes.person.first_name') + ' / ' + t('activerecord.attributes.person.surname'), class: 'uk-input'} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= collection_select nil,
+                            :study_program_id,
+                            StudyProgram.order(:degree, "name_#{locale}".to_sym),
+                            :id, :name_localized,
+                            {include_blank: t('activerecord.attributes.diploma.study_program_id'),
+                             hide_label: true, selected: params[:study_program_id]},
+                            {class: 'uk-select', name: :study_program_id} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= select nil,
+                 :promotion,
+                 (Date.today.year.to_i).downto(FOUNDING_YEAR).to_a,
+                 {include_blank: t('activerecord.attributes.diploma.promotion'), selected: params[:promotion]},
+                 {class: 'uk-select', name: :promotion} %>
+    </div>
+    <div class="uk-width-1-4@s">
+      <%= submit_tag t('helpers.search'), name: nil, class: 'uk-button uk-button-default' %>
+    </div>
+<% end %>
+
+<%= render partial: "students",
+           locals: {students: @students, is_ajax: false} %>
+
+<%= paginate @students %>

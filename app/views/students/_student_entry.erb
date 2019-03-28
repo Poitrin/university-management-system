@@ -1,0 +1,41 @@
+<%
+  select_button_style = is_selected ? 'display: none' : ''
+  delete_button_style = is_selected ? '' : 'display: none'
+%>
+
+<div>
+  <div class="uk-card uk-card-small uk-card-default uk-card-body" id="student-<%= student.id %>">
+    <h3 class="uk-card-title">
+      <% if is_ajax %>
+        <span class="uk-float-right">
+          <button class="uk-button uk-button-primary uk-button-small select-button"
+                  onclick="select('student', <%= student.id %>)"
+                  style="<%= select_button_style %>">
+            <%= t('helpers.select_action') %>
+          </button>
+
+          <button class="uk-button uk-button-secondary uk-button-small delete-button"
+                  onclick="remove('student')"
+                  style="<%= delete_button_style %>">
+            <%= t('helpers.delete') %>
+          </button>
+        </span>
+      <% end %>
+
+      <% if policy(student).show? and !is_ajax %>
+          <%= link_to student.full_name, student %>
+      <% else %>
+          <%= student.full_name %>
+      <% end %>
+    </h3>
+
+    <ul class="uk-list">
+      <% student.diplomas.sort_by(&:studies_start).each do |diploma| %>
+          <li>
+            <strong><%= diploma.studies_start.year %>:</strong>
+            <%= diploma.study_program.name_localized %>
+          </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -1,0 +1,2 @@
+class EnterpriseSupervisor < Supervisor
+end

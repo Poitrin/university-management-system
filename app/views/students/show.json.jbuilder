@@ -1,0 +1,3 @@
+json.extract! @student,
+              :id
+

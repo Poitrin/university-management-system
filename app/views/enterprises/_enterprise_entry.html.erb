@@ -1,0 +1,39 @@
+<%
+  select_button_style = is_selected ? 'display: none' : ''
+  delete_button_style = is_selected ? '' : 'display: none'
+%>
+
+<div>
+  <div class="uk-card uk-card-small uk-card-default uk-card-body" id="enterprise-<%= enterprise.id %>">
+    <h3 class="uk-card-title">
+      <% if is_ajax %>
+        <span class="uk-float-right">
+          <button class="uk-button uk-button-primary uk-button-small select-button"
+                  onclick="select('enterprise', <%= enterprise.id %>)"
+                  style="<%= select_button_style %>">
+            <%= t('helpers.select_action') %>
+          </button>
+
+          <button class="uk-button uk-button-secondary uk-button-small delete-button"
+                  onclick="remove('enterprise')"
+                  style="<%= delete_button_style %>">
+            <%= t('helpers.delete') %>
+          </button>
+        </span>
+      <% end %>
+
+      <% if is_ajax %>
+          <%= enterprise.name %>
+      <% else %>
+          <%= link_to enterprise.name, enterprise %>
+      <% end %>
+    </h3>
+
+    <p>
+      <%= enterprise.address.line1 %><br>
+      <%= enterprise.address.postal_code %>
+      <%= enterprise.address.city %><br>
+      <%= enterprise.address.country.name_de %>
+    </p>
+  </div>
+</div>

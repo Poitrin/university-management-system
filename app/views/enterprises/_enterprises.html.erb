@@ -1,0 +1,22 @@
+<% (!is_ajax && policy(Enterprise).create? ? insert_add_button(enterprises.to_a) : enterprises.to_a).each_slice(4).each do |slice| %>
+    <div class="uk-child-width-1-4@m uk-grid-small uk-grid-match" uk-grid>
+      <% slice.each do |enterprise| %>
+          <% if enterprise %>
+              <%= render partial: 'enterprise_entry',
+                         locals: {enterprise: enterprise,
+                                  is_ajax: is_ajax,
+                                  is_selected: false} %>
+          <% else %>
+              <div>
+                <div class="uk-card uk-card-primary uk-card-small uk-card-default uk-card-body">
+                  <h3 class="uk-card-title">
+                    <a href="<%= new_enterprise_path %>">
+                      <%= t('helpers.add', model: t('activerecord.models.enterprise.one')) %>
+                    </a>
+                  </h3>
+                </div>
+              </div>
+          <% end %>
+      <% end %>
+    </div>
+<% end %>

@@ -1,0 +1,31 @@
+<h1>Listing title_translations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Lang</th>
+      <th>Title short</th>
+      <th>Title long</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @title_translations.each do |title_translation| %>
+      <tr>
+        <td><%= title_translation.title %></td>
+        <td><%= title_translation.lang_id %></td>
+        <td><%= title_translation.title_short %></td>
+        <td><%= title_translation.title_long %></td>
+        <td><%= link_to 'Show', title_translation %></td>
+        <td><%= link_to 'Edit', edit_title_translation_path(title_translation) %></td>
+        <td><%= link_to 'Destroy', title_translation, method: :delete, data: { confirm: t('helpers.are_you_sure') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Title translation', new_title_translation_path %>

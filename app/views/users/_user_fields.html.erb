@@ -1,0 +1,12 @@
+<%= f.hidden_field :id %>
+<%= f.hidden_field :type %>
+<div class="row"><div class="col-md-6"><%= f.text_field :user_name %></div></div>
+<% unless f.object.new_record? %>
+    <% if f.object.old_password %>
+        <div class="row"><div class="col-md-6"><%= f.hidden_field :old_password %></div></div>
+    <% else %>
+        <div class="row"><div class="col-md-6"><%= f.password_field :old_password, placeholder: t('.if_you_want_to') %></div></div>
+    <% end %>
+<% end %>
+<div class="row"><div class="col-md-6"><%= f.password_field :password %></div></div>
+<div class="row"><div class="col-md-6"><%= f.password_field :password_confirmation %></div></div>

@@ -1,0 +1,50 @@
+<div uk-grid>
+  <div class="uk-width-1-3@m">
+    <%= f.input :title_id,
+                collection: t('title.titles'), value_method: :first, label_method: :second %>
+  </div>
+</div>
+<div uk-grid>
+  <div class="uk-width-1-3@m"><%= f.input :first_name %></div>
+  <div class="uk-width-1-3@m"><%= f.input :surname %></div>
+  <div class="uk-width-1-3@m"><%= f.input :birth_name %></div>
+</div>
+
+<% if f.object.is_a?(Student) %>
+    <%= f.input :birth_date, include_blank: true, start_year: Date.today.year - 100, end_year: Date.today.year %>
+
+    <div uk-grid>
+      <div class="uk-width-1-3@m">
+        <%= f.input :nationality, collection: Country.all.order("name_#{locale.to_s.downcase}"),
+              label_method: :name_localized %>
+      </div>
+      <div class="uk-width-1-3@m">
+        <%= f.input :second_nationality, collection: Country.all.order("name_#{locale.to_s.downcase}"),
+              label_method: :name_localized %></div>
+    </div>
+<% end %>
+
+<h2><%= t('activerecord.models.address.one') %></h2>
+<%= f.fields_for :address do |a| %>
+    <%= render 'addresses/address_fields', f: a %>
+<% end %>
+
+<h2><%= t('.contact_details') %></h2>
+<div uk-grid>
+  <div class="uk-width-1-3@m"><%= f.input :private_email %></div>
+  <div class="uk-width-1-3@m"><%= f.input :private_fixed_line %></div>
+  <div class="uk-width-1-3@m"><%= f.input :private_cell_phone %></div>
+</div>
+<div uk-grid>
+  <div class="uk-width-1-3@m"><%= f.input :business_email %></div>
+  <div class="uk-width-1-3@m"><%= f.input :business_fixed_line %></div>
+  <div class="uk-width-1-3@m"><%= f.input :business_cell_phone %></div>
+</div>
+
+<!-- TODO: implement! -->
+<% if false then %>
+<h2><%= t('activerecord.models.user.one') %></h2>
+<%= f.fields_for :user do |ff| %>
+    <%= render 'users/user_fields', f: ff %>
+<% end %>
+<% end %>

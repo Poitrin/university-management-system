@@ -1,0 +1,5 @@
+<h1><%= t('activerecord.models.administrator.other') %></h1>
+<p><%= link_to t('helpers.add', model: t('activerecord.models.administrator.one')),
+               new_users_administrator_path,
+               class: 'uk-button btn-primary' %></p>
+<%= render 'users/users', users: Administrator.all %>

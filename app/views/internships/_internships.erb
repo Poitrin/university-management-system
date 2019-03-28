@@ -1,0 +1,58 @@
+<%
+  is_students_page = (controller_name == 'students')
+  is_enterprises_page = (controller_name == 'enterprises')
+  path_params = {}
+
+  if is_students_page
+    path_params = {student: params[:id]}
+  elsif is_enterprises_page
+    path_params = {enterprise: params[:id]}
+  end
+%>
+
+<% (policy(Internship).create? ? insert_add_button(internships) : internships).each_slice(4).each do |slice| %>
+    <div class="uk-child-width-1-4@m uk-grid-small uk-grid-match" uk-grid>
+      <% slice.each do |internship| %>
+          <div>
+            <% if internship %>
+                <div id="internship-<%= internship.id %>"
+                     class="uk-card uk-card-small uk-card-default uk-card-body">
+                  <h3 class="uk-card-title">
+                    <span class="uk-float-right">
+                      &nbsp;
+                      <%= case internship.lang_id
+                        # Note: Emoji flags are not displayed correctly in .yml file in VS Code
+                        # so we "translate" them here:
+                        when 'DE' then '🇩🇪'
+                        when 'FR' then '🇫🇷'
+                        when 'EN' then '🇬🇧'
+                        else '❓'
+                      end %>
+                    </span>
+
+                    <% if is_students_page %>
+                        <%= link_to("#{internship.enterprise.name}", internship) %>
+                    <% elsif is_enterprises_page %>
+                        <%= link_to("#{internship.student.full_name}", internship) %>
+                    <% else %>
+                        <%= link_to("#{internship.student.full_name}, #{internship.enterprise.name}", internship) %>
+                    <% end %>
+                  </h3>
+
+
+                  <%= internship.study_program.name_localized %><br>
+                  <%= l internship.start_date %> – <%= l internship.end_date %>
+                </div>
+            <% else %>
+                <div class="uk-card uk-card-primary uk-card-small uk-card-default uk-card-body">
+                  <h3 class="uk-card-title">
+                    <a href="<%= new_internship_path(path_params) %>" class="no-text-decoration card-link">
+                      <%= t('helpers.add', model: t('activerecord.models.internship.one')) %>
+                    </a>
+                  </h3>
+                </div>
+            <% end %>
+          </div>
+      <% end %>
+    </div>
+<% end %>
