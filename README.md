@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/Poitrin/university-management-system/tree/master.svg?style=svg)](https://circleci.com/gh/Poitrin/university-management-system/tree/master)
+
 # University Management System – README
 
 Ruby on Rails web app to manage students, enterprises and internships.
