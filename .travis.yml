@@ -1,6 +1,10 @@
 language: ruby
 rvm:
-  - 2.3
+  - 2.5
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y libmysqlclient-dev
 
 addons:
   mariadb: '10.0'
