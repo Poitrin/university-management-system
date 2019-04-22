@@ -55,6 +55,9 @@ jobs: # a collection of steps
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      
+      # Access to host "test_database" needs to be redirected to localhost
+      - run: echo 127.0.0.1 test_database | sudo tee -a /etc/hosts
 
       - run:
           name: Database setup
