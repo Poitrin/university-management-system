@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  # before_action 'authorize User', only: [:index, :new, :create]
+  # before_action :authorize_user, only: [:index, :new, :create]
 
   # GET /users
   # GET /users.json
@@ -74,6 +74,10 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.old_password = params[:old_password] if @user.old_password.blank?
     authorize @user
+  end
+
+  def authorize_user
+    authorize User
   end
 
   # A) The administrator wants to edit a user.

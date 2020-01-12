@@ -12,8 +12,8 @@
   <div>
     <div>
       <%= simple_form_for(@session, url: login_path) do |f| %>
-          <%= f.input :user_name %>
-          <%= f.input :password %>
+          <%= f.input :user_name, placeholder: TEST_ACCESS ? 'admin' : '' %>
+          <%= f.input :password, placeholder: TEST_ACCESS ? 'password' : '' %>
 
           <%= f.button :submit %>
       <% end %>

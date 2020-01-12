@@ -3,7 +3,7 @@ FROM ruby:2.5
 
 WORKDIR /tmp
 COPY Gemfile Gemfile
-# COPY Gemfile.lock Gemfile.lock
+COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 
 RUN mkdir /ums

@@ -1,5 +1,5 @@
 class Users::ProgramDirectorsController < UsersController
-  before_action 'authorize ProgramDirector', only: [:index, :new, :create]
+  before_action :authorize_program_director, only: [:index, :new, :create]
 
   def index
     @users = ProgramDirector.all
@@ -10,6 +10,10 @@ class Users::ProgramDirectorsController < UsersController
   end
 
   private
+  def authorize_program_director
+    authorize ProgramDirector
+  end
+
   def user_params
     # TODO: more secure!
     params.require(:program_director).permit!

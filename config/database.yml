@@ -10,7 +10,8 @@ development:
   <<: *default
 
 production:
-  <<: *default
+  adapter: mysql2
+  url: <%= ENV['DATABASE_URL'] %>
   # username: username_of_production_database
   # password: password_of_production_database
 
