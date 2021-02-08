@@ -64,7 +64,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'simple_form', '~> 5.0'
-gem 'carrierwave', '~> 1.0.0'
+gem 'carrierwave', '~> 1.3.2'
 gem 'pundit', '~> 1.1.0'
 gem 'hashdiff', '~> 0.3.2'
 gem 'kaminari'
